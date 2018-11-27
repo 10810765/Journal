@@ -28,8 +28,6 @@ public class MainActivity extends AppCompatActivity {
 
         list.setOnItemClickListener(new ListItemClickListener());
         list.setOnItemLongClickListener(new ListItemLongClickListener());
-
-
     }
 
     public void addEntry(View view) {

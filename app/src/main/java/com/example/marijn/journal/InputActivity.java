@@ -17,6 +17,7 @@ public class InputActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_input);
+        mood = "";
     }
 
     public void addEntry(View view) {
@@ -26,11 +27,18 @@ public class InputActivity extends AppCompatActivity {
         String title = ((EditText) findViewById(R.id.titleEntry)).getText().toString();
         String content = ((EditText) findViewById(R.id.contentEntry)).getText().toString();
 
-        db.insert(new JournalEntry(title, content, mood));
+        // Check if all text fields have been filled
+        if (title.equals("") || content.equals("") || mood.equals("")) {
+            return;
 
-        Intent intent = new Intent(InputActivity.this, MainActivity.class);
+        } else {
 
-        startActivity(intent);
+            db.insert(new JournalEntry(title, content, mood));
+
+            Intent intent = new Intent(InputActivity.this, MainActivity.class);
+
+            startActivity(intent);
+        }
     }
 
 

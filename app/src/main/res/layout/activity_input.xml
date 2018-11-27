@@ -87,7 +87,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
         android:layout_margin="8dp"
-        android:layout_weight="1"
+        android:layout_weight="0"
         android:background="@color/design_default_color_primary"
         android:fontFamily="casual"
         android:onClick="addEntry"
