@@ -19,6 +19,7 @@
         android:ems="10"
         android:hint="Title of entry"
         android:inputType="textPersonName"
+        android:maxLength="22"
         android:textStyle="bold"
         tools:layout_editor_absoluteX="68dp"
         tools:layout_editor_absoluteY="36dp" />
@@ -89,6 +90,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginBottom="2dp"
         android:layout_weight="1"
         android:paddingBottom="4dp" />
 

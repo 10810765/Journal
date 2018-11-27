@@ -33,7 +33,7 @@ public class InputActivity extends AppCompatActivity {
         if (title.equals("") || content.equals("") || mood.equals("")) {
 
             //Type a title, message and select a mood before submitting your entry!
-            ((TextView) findViewById(R.id.message)).setText("*All fields must be filled before submitting!");
+            ((TextView) findViewById(R.id.message)).setText("*Please fill all fields before submitting!");
             return;
 
         } else {
