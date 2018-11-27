@@ -1,5 +1,6 @@
 package com.example.marijn.journal;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class InputActivity extends AppCompatActivity {
 
@@ -29,6 +31,9 @@ public class InputActivity extends AppCompatActivity {
 
         // Check if all text fields have been filled
         if (title.equals("") || content.equals("") || mood.equals("")) {
+
+            //Type a title, message and select a mood before submitting your entry!
+            ((TextView) findViewById(R.id.message)).setText("*All fields must be filled before submitting!");
             return;
 
         } else {
