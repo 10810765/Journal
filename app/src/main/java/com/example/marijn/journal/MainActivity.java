@@ -41,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-
             Cursor clickedEntry = (Cursor) parent.getItemAtPosition(position);
 
             Intent intent = new Intent(MainActivity.this, DetailActivity.class);
@@ -77,7 +76,4 @@ public class MainActivity extends AppCompatActivity {
     private void updateData() {
         adapter.swapCursor(db.selectAll());
     }
-
-
-
 }

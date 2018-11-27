@@ -30,9 +30,9 @@ public class EntryDatabase extends SQLiteOpenHelper {
         db.execSQL(entries);
 
         // Test queries
-        db.execSQL("INSERT INTO entries (title, content, mood) VALUES (\"First entry\", \"This is the first entry of the Journal\", \"Happy\")");
-        db.execSQL("INSERT INTO entries (title, content, mood) VALUES (\"Second entry\", \"This is the second entry of the Journal\", \"Happier\")");
-        db.execSQL("INSERT INTO entries (title, content, mood) VALUES (\"Third entry\", \"This is the third entry of the Journal\", \"Happiest\")");
+        db.execSQL("INSERT INTO entries (title, content, mood) VALUES (\"First entry\", \"This is the first entry of the Journal\", \"happy\")");
+        db.execSQL("INSERT INTO entries (title, content, mood) VALUES (\"Second entry\", \"This is the second entry of the Journal\", \"sad\")");
+        db.execSQL("INSERT INTO entries (title, content, mood) VALUES (\"Third entry\", \"This is the third entry of the Journal\", \"neutral\")");
     }
 
     @Override

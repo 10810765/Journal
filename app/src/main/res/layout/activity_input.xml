@@ -7,52 +7,94 @@
     android:orientation="vertical"
     tools:context=".InputActivity">
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="145dp"
-        tools:layout_editor_absoluteY="1dp" />
-
     <EditText
         android:id="@+id/titleEntry"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="6dp"
+        android:layout_weight="2"
+        android:backgroundTint="@color/design_default_color_primary"
         android:ems="10"
         android:hint="Title of entry"
         android:inputType="textPersonName"
+        android:textStyle="bold"
         tools:layout_editor_absoluteX="68dp"
         tools:layout_editor_absoluteY="36dp" />
 
     <EditText
         android:id="@+id/contentEntry"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:layout_weight="100"
+        android:backgroundTint="@color/design_default_color_primary"
         android:ems="10"
+        android:gravity="top"
         android:hint="Entry message"
         android:inputType="textMultiLine"
         tools:layout_editor_absoluteX="68dp"
         tools:layout_editor_absoluteY="174dp" />
 
-    <EditText
-        android:id="@+id/moodEntry"
+    <LinearLayout
+        android:id="@+id/pictures"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Mood"
-        android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="58dp"
-        tools:layout_editor_absoluteY="309dp" />
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="6dp">
+
+        <ImageButton
+            android:id="@+id/sad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onItemClick"
+            app:srcCompat="@drawable/sad" />
+
+        <ImageButton
+            android:id="@+id/worried"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onItemClick"
+            app:srcCompat="@drawable/worried" />
+
+        <ImageButton
+            android:id="@+id/neutral"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onItemClick"
+            app:srcCompat="@drawable/neutral" />
+
+        <ImageButton
+            android:id="@+id/happy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onItemClick"
+            app:srcCompat="@drawable/happy" />
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/submitEntry"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
+        android:layout_margin="8dp"
+        android:layout_weight="1"
+        android:background="@color/design_default_color_primary"
+        android:fontFamily="casual"
         android:onClick="addEntry"
-        android:text="Submit"
+        android:text="Submit entry!"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
         tools:layout_editor_absoluteX="145dp"
         tools:layout_editor_absoluteY="430dp" />
 </LinearLayout>

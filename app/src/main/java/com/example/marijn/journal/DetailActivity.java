@@ -14,10 +14,10 @@ public class DetailActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        TextView title = findViewById(R.id.title);
-        TextView content = findViewById(R.id.content);
-        TextView timestamp = findViewById(R.id.timestamp);
-        TextView mood = findViewById(R.id.mood);
+        TextView title = findViewById(R.id.titleText);
+        TextView content = findViewById(R.id.contentText);
+        TextView timestamp = findViewById(R.id.timestampText);
+        TextView mood = findViewById(R.id.moodText);
 
 
         title.setText(intent.getStringExtra("title"));

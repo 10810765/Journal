@@ -3,6 +3,7 @@ package com.example.marijn.journal;
 import android.content.Context;
 import android.database.Cursor;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ResourceCursorAdapter;
 import android.widget.TextView;
 
@@ -18,9 +19,15 @@ public class EntryAdapter extends ResourceCursorAdapter {
         String mood = cursor.getString(cursor.getColumnIndex("mood"));
         String timestamp = cursor.getString(cursor.getColumnIndex("timestamp"));
 
-        TextView titleText = view.findViewById(R.id.titleView);
-        TextView moodText = view.findViewById(R.id.moodView);
-        TextView dateText = view.findViewById(R.id.dateView);
+        ImageView image = view.findViewById(R.id.moodImage);
+
+        int moodID = context.getResources().getIdentifier(mood, "drawable", context.getPackageName());
+
+        image.setImageResource(moodID);
+
+        TextView titleText = view.findViewById(R.id.titleText);
+        TextView moodText = view.findViewById(R.id.moodText);
+        TextView dateText = view.findViewById(R.id.dateText);
 
         titleText.setText(title);
         moodText.setText(mood);
