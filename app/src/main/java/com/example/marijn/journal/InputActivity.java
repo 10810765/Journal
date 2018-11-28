@@ -66,7 +66,8 @@ public class InputActivity extends AppCompatActivity {
                 neutralImage.setColorFilter(filter);
                 happyImage.setColorFilter(filter);
 
-                mood = "sad";
+                mood = String.valueOf(sadImage.getTag());
+
                 break;
             case R.id.worried:
                 sadImage.setColorFilter(filter);
@@ -74,7 +75,7 @@ public class InputActivity extends AppCompatActivity {
                 neutralImage.setColorFilter(filter);
                 happyImage.setColorFilter(filter);
 
-                mood = "worried";
+                mood = String.valueOf(worriedImage.getTag());
                 break;
             case R.id.neutral:
                 sadImage.setColorFilter(filter);
@@ -82,7 +83,7 @@ public class InputActivity extends AppCompatActivity {
                 neutralImage.setColorFilter(null);
                 happyImage.setColorFilter(filter);
 
-                mood = "neutral";
+                mood = String.valueOf(neutralImage.getTag());
                 break;
             case R.id.happy:
                 sadImage.setColorFilter(filter);
@@ -90,7 +91,7 @@ public class InputActivity extends AppCompatActivity {
                 neutralImage.setColorFilter(filter);
                 happyImage.setColorFilter(null);
 
-                mood = "happy";
+                mood = String.valueOf(happyImage.getTag());
                 break;
         }
 

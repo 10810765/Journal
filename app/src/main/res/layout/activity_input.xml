@@ -56,6 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onItemClick"
+            android:tag="sad"
             app:srcCompat="@drawable/sad" />
 
         <ImageButton
@@ -64,6 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onItemClick"
+            android:tag="worried"
             app:srcCompat="@drawable/worried" />
 
         <ImageButton
@@ -72,6 +74,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onItemClick"
+            android:tag="neutral"
             app:srcCompat="@drawable/neutral" />
 
         <ImageButton
@@ -80,6 +83,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onItemClick"
+            android:tag="happy"
             app:srcCompat="@drawable/happy" />
 
     </LinearLayout>
