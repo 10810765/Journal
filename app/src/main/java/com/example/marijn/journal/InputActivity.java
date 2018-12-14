@@ -1,6 +1,5 @@
 package com.example.marijn.journal;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
@@ -11,11 +10,15 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+/**
+ * Marijn Meijering <m.h.j.meijering@uva.nl>
+ * 10810765 Universiteit van Amsterdam
+ * Minor Programmeren 17/12/2018
+ */
 public class InputActivity extends AppCompatActivity {
 
-    private static final String SAVED_TEXT = "text_input";
-
-    private String mood;
+    private String savedMood;
+    private static String mood;
     private ImageView[] moodButtons;
 
     @Override
@@ -33,13 +36,12 @@ public class InputActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             mood = "";
             return;
-        } else {
-            mood = savedInstanceState.getString("mood");
-            ImageView moodImage = findViewById(R.id.pictures).findViewWithTag(mood);
+        } else if (!savedInstanceState.getString("mood").equals("")) {
+            savedMood = savedInstanceState.getString("mood");
+            ImageView moodImage = findViewById(R.id.pictures).findViewWithTag(savedMood);
 
             final ColorMatrix grayscaleMatrix = new ColorMatrix();
             grayscaleMatrix.setSaturation(0);
-
             final ColorMatrixColorFilter filter = new ColorMatrixColorFilter(grayscaleMatrix);
 
             for (int i = 0, n = moodButtons.length; i < n; i++) {
@@ -49,21 +51,12 @@ public class InputActivity extends AppCompatActivity {
                     moodButtons[i].setColorFilter(filter);
                 }
             }
-
-            EditText title = findViewById(R.id.titleEntry);
-            EditText content = findViewById(R.id.contentEntry);
-            title.setText(savedInstanceState.getString(SAVED_TEXT));
-            content.setText(savedInstanceState.getString(SAVED_TEXT));
         }
     }
 
     public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState); // always call super
+        super.onSaveInstanceState(outState);
         outState.putString("mood", mood);
-        String title = ((EditText) findViewById(R.id.titleEntry)).getText().toString();
-        String content = ((EditText) findViewById(R.id.contentEntry)).getText().toString();
-        outState.putString(SAVED_TEXT, title);
-        outState.putString(SAVED_TEXT, content);
     }
 
     public void addEntry(View view) {
@@ -74,18 +67,17 @@ public class InputActivity extends AppCompatActivity {
         String content = ((EditText) findViewById(R.id.contentEntry)).getText().toString();
 
         // Check if all text fields have been filled
-        if (title.equals("") || content.equals("") || mood.equals("")) {
+        if (title.isEmpty() || content.isEmpty() || mood.equals("")) {
 
-            //Type a title, message and select a mood before submitting your entry!
+            //If not all fields have been filled, show a message
             ((TextView) findViewById(R.id.message)).setText("*Please fill all fields before submitting!");
             return;
 
         } else {
 
+            // If all field have been filled add the entry to the journal
             db.insert(new JournalEntry(title, content, mood));
-
             Intent intent = new Intent(InputActivity.this, MainActivity.class);
-
             startActivity(intent);
         }
     }
@@ -99,7 +91,7 @@ public class InputActivity extends AppCompatActivity {
         final ColorMatrixColorFilter filter = new ColorMatrixColorFilter(grayscaleMatrix);
 
         for (int i = 0, n = moodButtons.length; i < n; i++) {
-            if (moodButtons[i].equals(view.getId())) {
+            if (moodButtons[i] == findViewById(view.getId())) {
                 moodButtons[i].setColorFilter(null);
                 mood = String.valueOf(moodButtons[i].getTag());
             } else {

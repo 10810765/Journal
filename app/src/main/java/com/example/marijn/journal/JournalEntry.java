@@ -2,6 +2,11 @@ package com.example.marijn.journal;
 
 import java.io.Serializable;
 
+/**
+ * Marijn Meijering <m.h.j.meijering@uva.nl>
+ * 10810765 Universiteit van Amsterdam
+ * Minor Programmeren 17/12/2018
+ */
 public class JournalEntry implements Serializable {
         private String title, content, mood;
 
