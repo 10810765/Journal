@@ -40,15 +40,11 @@ public class InputActivity extends AppCompatActivity {
             savedMood = savedInstanceState.getString("mood");
             ImageView moodImage = findViewById(R.id.pictures).findViewWithTag(savedMood);
 
-            final ColorMatrix grayscaleMatrix = new ColorMatrix();
-            grayscaleMatrix.setSaturation(0);
-            final ColorMatrixColorFilter filter = new ColorMatrixColorFilter(grayscaleMatrix);
-
             for (int i = 0, n = moodButtons.length; i < n; i++) {
                 if (moodButtons[i].equals(moodImage)) {
                     moodButtons[i].setColorFilter(null);
                 } else {
-                    moodButtons[i].setColorFilter(filter);
+                    greyOutImage(moodButtons[i]);
                 }
             }
         }
@@ -85,18 +81,24 @@ public class InputActivity extends AppCompatActivity {
 
     public void onItemClick(View view) {
 
-        final ColorMatrix grayscaleMatrix = new ColorMatrix();
-        grayscaleMatrix.setSaturation(0);
-
-        final ColorMatrixColorFilter filter = new ColorMatrixColorFilter(grayscaleMatrix);
-
         for (int i = 0, n = moodButtons.length; i < n; i++) {
             if (moodButtons[i] == findViewById(view.getId())) {
                 moodButtons[i].setColorFilter(null);
                 mood = String.valueOf(moodButtons[i].getTag());
             } else {
-                moodButtons[i].setColorFilter(filter);
+                greyOutImage(moodButtons[i]);
             }
         }
+    }
+
+    // Grey out an image view
+    // Source: https://stackoverflow.com/questions/38186885/is-there-a-way-i-can-gray-out-an-imagebutton-in-android-without-maintaining-a-se
+    private void greyOutImage(ImageView image) {
+        final ColorMatrix grayscaleMatrix = new ColorMatrix();
+        grayscaleMatrix.setSaturation(0);
+
+        final ColorMatrixColorFilter greyFilter = new ColorMatrixColorFilter(grayscaleMatrix);
+        image.setColorFilter(greyFilter);
+
     }
 }
