@@ -65,7 +65,6 @@ public class EntryDatabase extends SQLiteOpenHelper {
     // Delete a whole row from the database found by id
     // Helper site: https://stackoverflow.com/questions/7510219/deleting-row-in-sqlite-in-android
     public void delete(long id) {
-
         getWritableDatabase().delete("entries", "_id = ?", new String[]{String.valueOf(id)});
     }
 }
