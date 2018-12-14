@@ -17,14 +17,16 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        Intent intent = getIntent();
-
+        // Get the ID's of various TextView and an ImageView
         TextView title = findViewById(R.id.titleText);
         TextView content = findViewById(R.id.contentText);
         TextView timestamp = findViewById(R.id.timestampText);
         TextView mood = findViewById(R.id.moodText);
 
+        // Retrieve the entry information from the previous activity
+        Intent intent = getIntent();
 
+        // Set the title, content, date and mood
         title.setText(intent.getStringExtra("title"));
         content.setText(intent.getStringExtra("content"));
         timestamp.setText(intent.getStringExtra("timestamp"));

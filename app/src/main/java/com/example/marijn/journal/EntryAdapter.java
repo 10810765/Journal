@@ -17,23 +17,23 @@ public class EntryAdapter extends ResourceCursorAdapter {
         super(context, R.layout.entry_row, cursor);
     }
 
-    @Override
+    @Override // Takes a View and fills the right elements with data from the cursor
     public void bindView(View view, Context context, Cursor cursor) {
 
+        // Get the profile name (TextView) and picture (ImageView) id
         String title = cursor.getString(cursor.getColumnIndex("title"));
         String mood = cursor.getString(cursor.getColumnIndex("mood"));
         String timestamp = cursor.getString(cursor.getColumnIndex("timestamp"));
-
-        ImageView image = view.findViewById(R.id.moodImage);
-
         int moodID = context.getResources().getIdentifier(mood, "drawable", context.getPackageName());
 
-        image.setImageResource(moodID);
-
+        // Get the ID's of various TextView and an ImageView
         TextView titleText = view.findViewById(R.id.titleText);
         TextView moodText = view.findViewById(R.id.moodText);
         TextView dateText = view.findViewById(R.id.dateText);
+        ImageView image = view.findViewById(R.id.moodImage);
 
+        // Set the title, date, mood string and mood image
+        image.setImageResource(moodID);
         titleText.setText(title);
         moodText.setText(mood);
         dateText.setText(timestamp);

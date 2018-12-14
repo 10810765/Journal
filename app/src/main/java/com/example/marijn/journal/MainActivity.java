@@ -15,58 +15,73 @@ import android.widget.ListView;
  */
 public class MainActivity extends AppCompatActivity {
 
-    private EntryDatabase db;
-    private EntryAdapter adapter;
+    private EntryDatabase db; // Variable used to hold the database
+    private EntryAdapter adapter; // Variable used to hold the adapter
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Get the entry database
         db = EntryDatabase.getInstance(getApplicationContext());
 
-        ListView list = findViewById(R.id.journalView);
-
+        // Instantiate the adapter for the journal entries
         adapter = new EntryAdapter(MainActivity.this, db.selectAll());
 
+        // Get the ListView ID
+        ListView list = findViewById(R.id.journalView);
+
+        // Attach the adapter to the list view
         list.setAdapter(adapter);
 
+        // Instantiate an on list item click and long click listener
         list.setOnItemClickListener(new ListItemClickListener());
         list.setOnItemLongClickListener(new ListItemLongClickListener());
     }
 
+    // On add entry button click, go to next activity
     public void addEntry(View view) {
         Intent addEntry = new Intent(MainActivity.this, InputActivity.class);
         startActivity(addEntry);
     }
 
+    // Create an on journal entry clicked listener
     private class ListItemClickListener implements AdapterView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+            // Get the cursor object of the clicked journal entry
             Cursor clickedEntry = (Cursor) parent.getItemAtPosition(position);
 
-            Intent intent = new Intent(MainActivity.this, DetailActivity.class);
-
+            // Create a new bundle
             Bundle bundle = new Bundle();
 
+            // Put entry information into the bundle
             bundle.putString("title", clickedEntry.getString(clickedEntry.getColumnIndex("title")));
             bundle.putString("content", clickedEntry.getString(clickedEntry.getColumnIndex("content")));
             bundle.putString("mood", clickedEntry.getString(clickedEntry.getColumnIndex("mood")));
             bundle.putString("timestamp", clickedEntry.getString(clickedEntry.getColumnIndex("timestamp")));
 
+            // Pass the Bundle to the next activity
+            Intent intent = new Intent(MainActivity.this, DetailActivity.class);
             intent.putExtras(bundle);
-
             startActivity(intent);
         }
     }
 
+    // Create an on journal entry long click listener
     private class ListItemLongClickListener implements AdapterView.OnItemLongClickListener {
         @Override
         public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
+            // Get the cursor object of the clicked journal entry
             Cursor clickedEntry = (Cursor) parent.getItemAtPosition(position);
+
+            // Use the cursor object to retrieve the id of the clicked journal entry
             long Id = clickedEntry.getInt(clickedEntry.getColumnIndex("_id"));
 
+            // Delete the journal entry
             db.delete(Id);
 
             // Update the journals list view
@@ -76,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // Update the list view
     private void updateData() {
         adapter.swapCursor(db.selectAll());
     }

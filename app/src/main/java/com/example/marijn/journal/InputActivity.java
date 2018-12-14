@@ -86,7 +86,7 @@ public class InputActivity extends AppCompatActivity {
 
     // Set an on mood clicked listener
     public void onItemClick(View view) {
-        // If a mood is clicked, set the image views and save the mood
+        // If a mood is clicked, grey out the other image views and save the mood
         for (int i = 0, n = moodButtons.length; i < n; i++) {
             if (moodButtons[i] == findViewById(view.getId())) {
                 moodButtons[i].setColorFilter(null);
@@ -98,7 +98,7 @@ public class InputActivity extends AppCompatActivity {
     }
 
     // Grey out an image view
-    // Source: https://stackoverflow.com/questions/38186885/is-there-a-way-i-can-gray-out-an-imagebutton-in-android-without-maintaining-a-se
+    // Source: https://stackoverflow.com/questions/38186885/
     private void greyOutImage(ImageView image) {
         final ColorMatrix grayscaleMatrix = new ColorMatrix();
         grayscaleMatrix.setSaturation(0);

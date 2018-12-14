@@ -10,12 +10,14 @@ import java.io.Serializable;
 public class JournalEntry implements Serializable {
         private String title, content, mood;
 
+    // Journal entry constructor
     public JournalEntry(String title, String content, String mood) {
         this.title = title;
         this.content = content;
         this.mood = mood;
     }
 
+    // Getters and setters
     public String getTitle() {
         return title;
     }

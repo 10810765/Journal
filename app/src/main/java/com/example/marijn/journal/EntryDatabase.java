@@ -14,12 +14,14 @@ import android.support.annotation.Nullable;
  */
 public class EntryDatabase extends SQLiteOpenHelper {
 
+    // Store unique instance of the class once created
     private static EntryDatabase instance;
 
     private EntryDatabase(@Nullable Context context) {
         super(context, "Journal", null, 1);
     }
 
+    // Return value of instance if available, otherwise call the EntryDatabase constructor
     public static EntryDatabase getInstance(Context context) {
         if (instance != null) {
             return instance;
@@ -31,6 +33,8 @@ public class EntryDatabase extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
+        // Create journal entries table
         String entries = "CREATE TABLE entries (_id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, content TEXT, mood TEXT, timestamp DATETIME DEFAULT (datetime('now','localtime')))";
         db.execSQL(entries);
 
@@ -40,10 +44,9 @@ public class EntryDatabase extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO entries (title, content, mood) VALUES (\"Third entry\", \"This is the third entry of the Journal\", \"neutral\")");
     }
 
-    @Override
+    @Override // Drop the entries table and recreate it
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS entries");
-
         onCreate(db);
     }
 
@@ -52,18 +55,19 @@ public class EntryDatabase extends SQLiteOpenHelper {
         return getWritableDatabase().rawQuery("SELECT * FROM entries", null);
     }
 
+    // Method used to insert information into the database
     public void insert(JournalEntry entry) {
         ContentValues contentValues = new ContentValues();
         contentValues.put("title", entry.getTitle());
         contentValues.put("content", entry.getContent());
         contentValues.put("mood", entry.getMood());
 
+        // Open up a connection and insert the values
         getWritableDatabase().insert("entries", null, contentValues);
     }
 
-
-    // Delete a whole row from the database found by id
-    // Helper site: https://stackoverflow.com/questions/7510219/deleting-row-in-sqlite-in-android
+    // Delete a database entry by id
+    // Helper site: https://stackoverflow.com/questions/7510219/
     public void delete(long id) {
         getWritableDatabase().delete("entries", "_id = ?", new String[]{String.valueOf(id)});
     }
