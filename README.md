@@ -10,6 +10,7 @@ By: Marijn Meijering - 10810765
 * State restoration implemented (selected emoji and content don't disappear upon rotation)
 * Journal entries can be favourited in the detail screen
 * Journal entries and favourites will be saved upon rotating or closing the app
+* All fields have to be filled before an entry can be submitted (or a message will show)
 
 #### Portrait view screenshots
 ![App1 Journal](https://github.com/10810765/Journal/blob/master/doc/Journal_1.png)
