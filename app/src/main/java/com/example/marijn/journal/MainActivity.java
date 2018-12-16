@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     private EntryDatabase db; // Variable used to hold the database
     private EntryAdapter adapter; // Variable used to hold the adapter
+    private ListView list; // Variable used to hold the ListView id
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         adapter = new EntryAdapter(MainActivity.this, db.selectAll());
 
         // Get the ListView ID
-        ListView list = findViewById(R.id.journalView);
+        list = findViewById(R.id.journalView);
 
         // Attach the adapter to the list view
         list.setAdapter(adapter);
@@ -38,6 +39,14 @@ public class MainActivity extends AppCompatActivity {
         // Instantiate an on list item click and long click listener
         list.setOnItemClickListener(new ListItemClickListener());
         list.setOnItemLongClickListener(new ListItemLongClickListener());
+    }
+
+    @Override // After a pause or restart
+    public void onResume() {
+        super.onResume();
+        // Refresh the list view
+        EntryAdapter updateAdapter = new EntryAdapter(MainActivity.this, db.selectAll());
+        list.setAdapter(updateAdapter);
     }
 
     // On add entry button click, go to next activity

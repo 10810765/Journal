@@ -1,6 +1,7 @@
 package com.example.marijn.journal;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.view.View;
 import android.widget.ImageView;
@@ -31,11 +32,20 @@ public class EntryAdapter extends ResourceCursorAdapter {
         TextView moodText = view.findViewById(R.id.moodText);
         TextView dateText = view.findViewById(R.id.dateText);
         ImageView image = view.findViewById(R.id.moodImage);
+        ImageView favourite = view.findViewById(R.id.favouriteView);
 
         // Set the title, date, mood string and mood image
         image.setImageResource(moodID);
         titleText.setText(title);
         moodText.setText(mood);
         dateText.setText(timestamp);
+
+        // Get the favourite status (boolean)
+        SharedPreferences prefsFav = context.getSharedPreferences("favourite", 0);
+        Boolean isFav = prefsFav.getBoolean((title + timestamp).toLowerCase(), false);
+
+        if (isFav) { // If it is a favourite person, make yellow star visible
+            favourite.setVisibility(View.VISIBLE);
+        }
     }
 }

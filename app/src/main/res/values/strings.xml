@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Journal</string>
+    <string name="content">content</string>
+    <string name="title">title</string>
+    <string name="mood">mood</string>
+    <string name="time">time</string>
+    <string name="favourite_or_not">favourite or not</string>
 </resources>

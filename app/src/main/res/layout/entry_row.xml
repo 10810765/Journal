@@ -10,12 +10,14 @@
         android:id="@+id/moodImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/favourite_or_not"
         android:padding="12dp"
         app:srcCompat="@drawable/neutral" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:orientation="vertical"
         android:paddingLeft="10dp"
         android:paddingTop="4dp"
@@ -30,7 +32,7 @@
             android:backgroundTintMode="add"
             android:fontFamily="serif-monospace"
             android:padding="2dp"
-            android:text="TextView"
+            android:text="@string/title"
             android:textAlignment="center"
             android:textColor="@color/design_default_color_primary"
             android:textSize="20sp"
@@ -41,7 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="2dp"
-            android:text="TextView"
+            android:text="@string/time"
             android:textAlignment="center"
             tools:layout_editor_absoluteX="122dp"
             tools:layout_editor_absoluteY="7dp" />
@@ -51,9 +53,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="2dp"
-            android:text="TextView"
+            android:text="@string/mood"
             android:textAlignment="center"
             android:textStyle="italic" />
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/favouriteView"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/yellow_star" />
 
 </LinearLayout>

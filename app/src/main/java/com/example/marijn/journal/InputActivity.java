@@ -97,6 +97,7 @@ public class InputActivity extends AppCompatActivity {
         }
     }
 
+
     // Grey out an image view
     // Source: https://stackoverflow.com/questions/38186885/
     private void greyOutImage(ImageView image) {
